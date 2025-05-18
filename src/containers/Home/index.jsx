@@ -9,19 +9,30 @@ import {
   Poster,
 } from "./styles";
 import Button from "../../components/Button";
+import Slider from "../../components/Slider";
 
 function Home() {
   const [movie, setMovie] = useState();
+  const [topMovies, setTopMovies] = useState();
 
   useEffect(() => {
     async function getMovies() {
       const {
         data: { results },
       } = await api.get("/movie/popular");
-      setMovie(results[5]);
+      setMovie(results[0]);
+    }
+
+    async function getTopMovies() {
+      const {
+        data: { results },
+      } = await api.get("/movie/top_rated");
+      // console.log(results);
+      setTopMovies(results);
     }
 
     getMovies();
+    getTopMovies();
   }, []);
 
   return (
@@ -48,6 +59,7 @@ function Home() {
           </Container>
         </Background>
       )}
+      {topMovies && <Slider info={topMovies} title={"Top Filmes"} />}
     </>
   );
 }

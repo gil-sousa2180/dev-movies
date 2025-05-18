@@ -26,7 +26,7 @@ export const ButtonWhite = styled.button`
 
   background: #ff0000;
   border: 3px solid transparent;
-  box-shadow: 0px 0px 5px 7px rgba(255 0 0 / 30%);
+  box-shadow: 0px 0px 5px 7px rgba(255 0 0 / 25%);
 
   &:hover {
     box-shadow: 0px 0px 7px 10px rgba(255 0 0 / 40%);
