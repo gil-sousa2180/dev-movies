@@ -2,7 +2,6 @@ function Series() {
   return (
     <div>
       <h1>Series</h1>
-      <p>Olá seja bem vindo a minha Series</p>
     </div>
   );
 }

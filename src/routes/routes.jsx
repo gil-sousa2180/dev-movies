@@ -11,7 +11,7 @@ function Router() {
       <Route element={<DefaultLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/filmes" element={<Movies />} />
-        <Route path="/temporadas" element={<Series />} />
+        <Route path="/series" element={<Series />} />
       </Route>
     </Routes>
   );
