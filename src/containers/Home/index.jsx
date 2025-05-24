@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import api from "../../services/api";
 import {
   Background,
@@ -20,6 +22,7 @@ function Home() {
   const [topSeries, setTopSeries] = useState();
   const [popularSeries, setPopularSeries] = useState();
   const [artistsPopular, setArtistsPopular] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getMovies() {
@@ -80,7 +83,9 @@ function Home() {
               <h1>{movie.title}</h1>
               <p>{movie.overview}</p>
               <ContainerButtons>
-                <Button>Assista Agora</Button>
+                <Button onClick={() => navigate(`/detalhe/${movie.id}`)}>
+                  Assista Agora
+                </Button>
                 <Button red onClick={() => setShowModal(true)}>
                   Assista o Trailer
                 </Button>
