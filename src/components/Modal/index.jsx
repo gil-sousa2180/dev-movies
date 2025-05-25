@@ -1,19 +1,15 @@
 import { useEffect, useState } from "react";
-import api from "../../services/api";
+import { FaRegWindowClose } from "react-icons/fa";
+import { getMovie } from "../../services/getData";
 import { Background, Container } from "./style";
 //import { IoCloseCircleOutline } from "react-icons/io5"; - <IoCloseCircleOutline />
-import { FaRegWindowClose } from "react-icons/fa";
 
 function Modal({ movieId, setShowModal }) {
   const [movie, setMovie] = useState();
   useEffect(() => {
     async function getMovies() {
-      const {
-        data: { results },
-      } = await api.get(`/movie/${movieId}/videos`);
-      setMovie(results[0]);
+      setMovie(await getMovie(movieId));
     }
-
     getMovies();
   }, []);
 

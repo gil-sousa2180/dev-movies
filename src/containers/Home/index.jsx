@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 
 import { useNavigate } from "react-router-dom";
 
-import api from "../../services/api";
 import {
   Background,
   Container,
@@ -14,6 +13,13 @@ import Button from "../../components/Button";
 import Slider from "../../components/Slider";
 import { getImages } from "../../utils/getImages";
 import Modal from "../../components/Modal";
+import {
+  getArtistsPopular,
+  getMovies,
+  getPoluparSeries,
+  getTopMovies,
+  getTopSeries,
+} from "../../services/getData";
 
 function Home() {
   const [showModal, setShowModal] = useState(false);
@@ -25,50 +31,27 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    async function getMovies() {
-      const {
-        data: { results },
-      } = await api.get("/movie/popular");
-      setMovie(results[0]);
+    async function getAllData() {
+      Promise.all([
+        getMovies(),
+        getTopMovies(),
+        getTopSeries(),
+        getPoluparSeries(),
+        getArtistsPopular(),
+      ])
+        .then(
+          ([movie, topMovies, topSeries, popularSeries, artistsPopular]) => {
+            setMovie(movie);
+            setTopMovies(topMovies);
+            setTopSeries(topSeries);
+            setPopularSeries(popularSeries);
+            setArtistsPopular(artistsPopular);
+          }
+        )
+        .catch((error) => console.error(error));
     }
 
-    async function getTopMovies() {
-      const {
-        data: { results },
-      } = await api.get("/movie/top_rated");
-      // console.log(results);
-      setTopMovies(results);
-    }
-
-    async function getTopSeries() {
-      const {
-        data: { results },
-      } = await api.get("/tv/top_rated");
-      // console.log(results);
-      setTopSeries(results);
-    }
-
-    async function getPoluparSeries() {
-      const {
-        data: { results },
-      } = await api.get("/tv/popular");
-      // console.log(results);
-      setPopularSeries(results);
-    }
-
-    async function getArtistsPopular() {
-      const {
-        data: { results },
-      } = await api.get("/person/popular");
-      // console.log(results);
-      setArtistsPopular(results);
-    }
-
-    getMovies();
-    getTopMovies();
-    getTopSeries();
-    getPoluparSeries();
-    getArtistsPopular();
+    getAllData();
   }, []);
 
   return (
