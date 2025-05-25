@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { FaRegWindowClose } from "react-icons/fa";
-import { getMovie } from "../../services/getData";
+import { getMovieVideos } from "../../services/getData";
 import { Background, Container } from "./style";
 //import { IoCloseCircleOutline } from "react-icons/io5"; - <IoCloseCircleOutline />
 
@@ -8,7 +8,7 @@ function Modal({ movieId, setShowModal }) {
   const [movie, setMovie] = useState();
   useEffect(() => {
     async function getMovies() {
-      setMovie(await getMovie(movieId));
+      setMovie(await getMovieVideos(movieId));
     }
     getMovies();
   }, []);
