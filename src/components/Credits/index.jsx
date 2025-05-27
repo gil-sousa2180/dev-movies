@@ -2,7 +2,7 @@ import { getImages } from "../../utils/getImages";
 import { Container, Title } from "./style";
 
 function Credits({ credits }) {
-  //console.log({ credits });
+  //({ credits });
   return (
     <>
       <Title>Créditos</Title>

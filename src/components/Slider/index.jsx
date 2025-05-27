@@ -3,7 +3,7 @@ import { Container } from "./style";
 import Card from "../Card";
 
 function Slider({ info, title }) {
-  console.log(info, title);
+  //(info, title);
   return (
     <Container>
       <h2>{title}</h2>

@@ -1,9 +1,3 @@
-function Movies() {
-  return (
-    <div>
-      <h1>Filmes</h1>
-    </div>
-  );
-}
+function Movies() {}
 
 export default Movies;

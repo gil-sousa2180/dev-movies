@@ -113,6 +113,6 @@ export const ContainerMovies = styled.div`
   iframe {
     border: none;
     border-radius: 5px;
-    //box-shadow: rgb(225 255 215 / 15%) 0px 16px 26px 0px;
+    box-shadow: rgb(255 255 255 / 15%) 0px 5px 16px 0px;
   }
 `;
